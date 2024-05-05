@@ -39,6 +39,19 @@ $ npm add @prisma/client
 $ npx prisma init
 ```
 
+## Prisma command we use
+
+```bash
+$ npx prisma --help
+
+# To send schema database
+$ npx prisma migrate dev 
+
+$ npx prisma generate
+
+$ npx prisma studio
+```
+
 ## Running the app
 
 ```bash
