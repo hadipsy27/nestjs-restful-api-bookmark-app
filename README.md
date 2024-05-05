@@ -31,6 +31,13 @@
 ```bash
 $ npm install
 ```
+## Prisma Instalation
+
+```bash
+$ npm add -D prisma
+$ npm add @prisma/client
+$ npx prisma init
+```
 
 ## Running the app
 
