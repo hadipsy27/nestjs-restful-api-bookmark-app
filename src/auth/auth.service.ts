@@ -3,6 +3,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { AuthDto } from "./dto";
 import * as argon from 'argon2';
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { hash } from "crypto";
 
 
 @Injectable()
@@ -53,4 +54,14 @@ export class AuthService{
         delete user.hash;
         return user;
     }
+    
+    async getUsers(){
+        const users = await this.prisma.user.findMany();
+        console.info(users)
+
+        return users.filter(user =>
+            delete user.hash
+        );
+    }
+    
 }
