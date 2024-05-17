@@ -1,7 +1,7 @@
 import { Body, Injectable, Post } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProductCreateDto } from './dto/product.create.dto';
-import { error } from 'console';
+import { error, log } from 'console';
 
 @Injectable()
 export class ProductService {
@@ -34,6 +34,24 @@ export class ProductService {
 
     return data;
 
+  }
+
+  async getProductByUser(id: number){
+    const productUser = await this.prismaService.product.findMany({
+      where: {
+        userId: id
+      }
+    })
+    console.info({
+      data: productUser
+    })
+
+    const result = {
+      data: productUser,
+      message: "Success Get All Product User"
+    }
+
+    return result;
   }
 
 }
