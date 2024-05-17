@@ -25,6 +25,7 @@ model User{
   lastName String?
 
   bookmarks Bookmark[]
+  products Product[]
   
   @@map("users")
 }
@@ -42,4 +43,20 @@ model Bookmark{
   user User @relation(fields: [userId], references: [id])
 
   @@map("bookmarks")
+}
+
+model Product{
+  id Int @id @default(autoincrement())
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String
+  price Float
+  imageUrl String?
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+ 
+  @@map("products")
+  
 }
