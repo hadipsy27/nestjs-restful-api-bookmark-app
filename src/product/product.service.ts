@@ -1,7 +1,7 @@
 import { Body, Injectable, Post } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProductCreateDto } from './dto/product.create.dto';
-import { error, log } from 'console';
+import { ProductUpdateDto } from './dto/product.update.dto';
 
 @Injectable()
 export class ProductService {
@@ -52,6 +52,28 @@ export class ProductService {
     }
 
     return result;
+  }
+
+  async updateProduct(productId: number, productUpdateDto: ProductUpdateDto){
+
+    const productUpdated = await this.prismaService.product.update({
+      where: { id: productId },
+      data: productUpdateDto
+    });
+
+    console.info({ data: productUpdated})
+
+    return productUpdated;
+  }
+
+  async deleteProduct(productId: number){
+    await this.prismaService.product.delete({
+      where: {id: productId}
+    });
+
+    return {
+      message: "Delete Product Successfully"
+    }
   }
 
 }
