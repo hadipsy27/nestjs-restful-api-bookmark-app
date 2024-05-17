@@ -15,9 +15,9 @@ export class ProductController {
     return this.productService.createProduct(productCreateDto, req.user['id']);
   }
 
-  @Get('user/:userId')
-  userProduct(@Param('userId', ParseIntPipe) userId: number){
-    return this.productService.getProductByUser(userId);
+  @Get()
+  userProduct(@Req() req: Request){
+    return this.productService.getProductByUser(req.user['id']);
   }
 
   @Put('update/:productId')
